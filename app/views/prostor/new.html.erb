@@ -1,0 +1,9 @@
+<%= form_tag :action => 'create' do %>
+  <p>Write item name:
+    <%= text_field_tag 'item_name', @name %></p>
+  <p>Write price for this item:
+    <%= text_field_tag 'item_price', @price %></p>
+
+  <%= submit_tag 'Create item' %>
+
+<% end %>

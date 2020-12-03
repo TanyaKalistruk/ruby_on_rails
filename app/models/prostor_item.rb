@@ -1,0 +1,2 @@
+class ProstorItem < ApplicationRecord
+end

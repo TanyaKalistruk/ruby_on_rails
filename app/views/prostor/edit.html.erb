@@ -1,0 +1,10 @@
+<%= form_tag :action => 'update' do %>
+  <p>Update item name
+    <%= text_field_tag 'item_name', @name, :value => @item["item_name"] %></p>
+  <p>Update item price
+    <%= text_field_tag 'item_price', @price, :value => @item["price"] %></p>
+  <%= hidden_field 'item_id', @item_id, :value => @item["item_id"] %>
+
+  <%= submit_tag 'Update item' %>
+
+<% end %>

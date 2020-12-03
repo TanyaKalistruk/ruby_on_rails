@@ -1,0 +1,24 @@
+<h1>Hello <%= @name %></h1>
+
+<%= button_to "Create new item", '/prostor/new', method: :get %>
+
+
+<table border="1" cellspacing="0" align="center">
+  <caption>All items</caption>
+  <tr>
+    <td>Number</td>
+    <td>Item name</td>
+    <td>Price</td>
+  </tr>
+  <% counter=1 %>
+  <% @items.each do |item| %>
+    <tr>
+      <td><%= counter %></td>
+      <td><%= item["item_name"] %></td>
+      <td><%= item["price"] %></td>
+      <td><%= button_to "Edit", "/prostor/edit/#{item["item_id"]}", method: :get %></td>
+      <td><%= button_to "Delete item", "/prostor/destroy/#{item["item_id"]}", method: :get %></td>
+      <% counter+=1 %>
+    </tr>
+  <% end %>
+</table>

@@ -1,0 +1,11 @@
+<%= form_tag :action => 'sign_in' do %>
+  <p>If you are first time there write your name:
+    <%= text_field_tag 'visitor_name', @name %></p>
+  <p>Enter your login:
+    <%= text_field_tag 'visitor_login', @login %></p>
+  <p>Enter your password:
+    <%= text_field_tag 'visitor_password', @password %></p>
+
+  <%= submit_tag 'Sign in' %>
+
+<% end %>
