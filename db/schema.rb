@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 2020_12_03_193818) do
     t.integer "item_id"
     t.string "item_name"
     t.integer "price"
+    t.string "is_deleted"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

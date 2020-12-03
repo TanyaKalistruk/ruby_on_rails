@@ -4,6 +4,7 @@ class CreateProstorItems < ActiveRecord::Migration[6.0]
       t.integer :item_id
       t.string :item_name
       t.integer :price
+      t.string :is_deleted
       t.timestamps
     end
   end

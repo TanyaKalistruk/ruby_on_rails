@@ -10,5 +10,9 @@ Rails.application.routes.draw do
   post 'prostor/update'
   get 'prostor/destroy/:id' => 'prostor#destroy'
   post 'prostor/destroy/:id' => 'prostor#destroy'
-  get 'prostor/index/:id' => 'prostor#index'
+  get 'prostor/index'
+  post 'login/log_out'
+  get 'login/log_out'
+  get 'user_item/index'
+  post 'user_item/add/:id' => 'user_item#add'
 end

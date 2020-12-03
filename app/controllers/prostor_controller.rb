@@ -1,5 +1,4 @@
 class ProstorController < ApplicationController
-  @user_id
   def new
   end
 
@@ -8,10 +7,10 @@ class ProstorController < ApplicationController
     @price = params[:item_price]
     @item_id = ProstorItem.all.length + 1
     unless @name.blank? and @price.blank?
-      @entry = ProstorItem.create({:item_id => @item_id, :item_name => @name, :price => @price})
+      @entry = ProstorItem.create({:item_id => @item_id, :item_name => @name, :price => @price,
+                                   :is_deleted =>"false"})
     end
-    puts("user_id is #{@user_id}")
-    redirect_to("/prostor/index/#{@user_id}")
+    redirect_to("/prostor/index")
   end
 
   def edit
@@ -23,21 +22,17 @@ class ProstorController < ApplicationController
     @price = params[:item_price]
     @item_id = params[:item_id][0].to_i
     ProstorItem.where({:item_id => @item_id}).update_all({:item_name => @name, :price => @price})
-    rescue ActiveRecord::RecordNotFound
-      puts("No records")
-    redirect_to("/prostor/index/#{@user_id}")
+    redirect_to("/prostor/index")
   end
 
   def destroy
     @item_id = params[:id].to_i
-    ProstorItem.destroy(@item_id)
-    rescue ActiveRecord::RecordNotFound
-      puts("No records")
-    redirect_to("/prostor/index/#{@user_id}")
+    ProstorItem.where({:item_id => @item_id}).update_all({:is_deleted => "true"})
+    redirect_to("/prostor/index")
   end
 
   def index
-    @user_id = params[:id]
+    @user_id = cookies[:user_id]
     @name = User.find(@user_id)["name"]
     @items = ProstorItem.all
   end

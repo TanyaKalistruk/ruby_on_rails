@@ -1,6 +1,7 @@
 <h1>Hello <%= @name %></h1>
-
 <%= button_to "Create new item", '/prostor/new', method: :get %>
+<%= button_to "Get list of ordered items", '/user_item/index', method: :get %>
+<%= button_to "Log out", '/login/log_out', method: :post %>
 
 
 <table border="1" cellspacing="0" align="center">
@@ -12,12 +13,16 @@
   </tr>
   <% counter=1 %>
   <% @items.each do |item| %>
+    <% if item["is_deleted"] == "true"%>
+      <%next%>
+    <% end %>
     <tr>
       <td><%= counter %></td>
       <td><%= item["item_name"] %></td>
       <td><%= item["price"] %></td>
       <td><%= button_to "Edit", "/prostor/edit/#{item["item_id"]}", method: :get %></td>
       <td><%= button_to "Delete item", "/prostor/destroy/#{item["item_id"]}", method: :get %></td>
+      <td><%= button_to "Add item", "/user_item/add/#{item["item_id"]}", method: :post %></td>
       <% counter+=1 %>
     </tr>
   <% end %>

@@ -1,2 +1,29 @@
-<h1>UserItem#index</h1>
-<p>Find me in app/views/user_item/index.html.erb</p>
+<table border="1" cellspacing="0" align="center">
+  <caption>All items</caption>
+  <tr>
+    <td>Number</td>
+    <td>Item name</td>
+    <td>Item count</td>
+    <td>Price for 1</td>
+    <td>Price for items</td>
+  </tr>
+  <% counter = 1 %>
+  <% @items_info.each do |item| %>
+    <% if item["is_deleted"] == "true" %>
+      <% next %>
+    <% end %>
+    <% @user_items.each do |user_item| %>
+      <% if user_item["item_id"] == item["item_id"] %>
+        <tr>
+          <td><%= counter %></td>
+          <td><%= item["item_name"] %></td>
+          <td><%= user_item["count"] %></td>
+          <td><%= item["price"] %></td>
+          <td><%= item["price"]*user_item["count"] %></td>
+          <% counter += 1 %>
+        </tr>
+      <% end %>
+    <% end %>
+  <% end %>
+</table>
+<%= button_to "Go back", '/prostor/index', method: :get %>

@@ -10,15 +10,15 @@ default: &default
 
 development:
   <<: *default
-  database: prostor_development
+  database: db/prostor_development
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: prostor_test
+  database: db/prostor_test
 
 production:
   <<: *default
-  database: prostor_production
+  database: db/prostor_production

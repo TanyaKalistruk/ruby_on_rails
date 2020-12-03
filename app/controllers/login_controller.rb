@@ -2,6 +2,10 @@ class LoginController < ApplicationController
   def log_in
   end
 
+  def log_out
+    cookies.delete(:user_id)
+  end
+
   def sign_in
     @name = params[:visitor_name]
     @login = params[:visitor_login]
@@ -23,6 +27,7 @@ class LoginController < ApplicationController
       @entry = User.create({:user_id => @counter, :name => @name, :username => @login, :password => @password})
 
     end
-    redirect_to("/prostor/index/#{@counter}")
+    cookies[:user_id] = @counter
+    redirect_to("/prostor/index")
   end
 end
