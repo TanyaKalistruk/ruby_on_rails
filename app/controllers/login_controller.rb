@@ -8,20 +8,20 @@ class LoginController < ApplicationController
     @password = params[:visitor_password]
     @users = User.all
     @flag = true
-    @counter = 0
+    @counter = 1
     unless @login.blank?
       @users.each do |user|
-        @counter +=1
         if user.username == @login and user.password == @password
           @flag = false
-          @counter = user.user_id+1
+          @counter = user.user_id
           break
         end
+        @counter +=1
       end
     end
     if @flag
       @entry = User.create({:user_id => @counter, :name => @name, :username => @login, :password => @password})
-      # @entry = User.create({:name => @name, :username => @login, :password => @password})
+
     end
     redirect_to("/prostor/index/#{@counter}")
   end
