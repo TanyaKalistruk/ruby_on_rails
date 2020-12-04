@@ -21,4 +21,4 @@ test:
 
 production:
   <<: *default
-  database: db/prostor_production
+  database: db/prostor_lab_production

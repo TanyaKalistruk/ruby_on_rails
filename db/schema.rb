@@ -25,11 +25,13 @@ ActiveRecord::Schema.define(version: 2020_12_03_193818) do
   end
 
   create_table "user_items", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "item_id"
+    t.bigint "user_id"
+    t.bigint "prostor_item_id"
     t.integer "count"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["prostor_item_id"], name: "index_user_items_on_prostor_item_id"
+    t.index ["user_id"], name: "index_user_items_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

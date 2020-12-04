@@ -13,7 +13,7 @@
       <% next %>
     <% end %>
     <% @user_items.each do |user_item| %>
-      <% if user_item["item_id"] == item["item_id"] %>
+      <% if user_item["prostor_item_id"] == item["item_id"] %>
         <tr>
           <td><%= counter %></td>
           <td><%= item["item_name"] %></td>
