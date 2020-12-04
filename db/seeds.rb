@@ -16,3 +16,7 @@ table.each do |row|
   ProstorItem.create({:item_id => @counter, :item_name => @row_hash["name"], :price => @row_hash["price"],
                       :is_deleted => "false"})
 end
+
+
+User.create({:user_id => 1, :username => "admin", :password => "admin",:name => "Tania",
+                    :role => "admin"})

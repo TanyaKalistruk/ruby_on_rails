@@ -25,6 +25,7 @@ class UserItemController < ApplicationController
       puts("count is #{@count}")
       UserItem.where({:item_id => @item_id, :user_id => @user_id}).update_all({:count => @count+1})
     else
+      puts(User.where({:user_id => @user_id}))
       UserItem.create({:item_id => @item_id, :user_id => @user_id, :count => 1})
     end
     redirect_to("/prostor/index")

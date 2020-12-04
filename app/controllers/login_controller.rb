@@ -24,7 +24,8 @@ class LoginController < ApplicationController
       end
     end
     if @flag
-      @entry = User.create({:user_id => @counter, :name => @name, :username => @login, :password => @password})
+      @entry = User.create({:user_id => @counter, :name => @name, :username => @login, :password => @password,
+                            :role => "user"})
 
     end
     cookies[:user_id] = @counter

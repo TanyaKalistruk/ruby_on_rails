@@ -33,7 +33,7 @@ class ProstorController < ApplicationController
 
   def index
     @user_id = cookies[:user_id]
-    @name = User.find(@user_id)["name"]
+    @user = User.find(@user_id)
     @items = ProstorItem.all
   end
 end
