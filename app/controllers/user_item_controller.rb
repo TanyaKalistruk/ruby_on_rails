@@ -18,17 +18,15 @@ class UserItemController < ApplicationController
   end
 
   def add
-    @user_id = cookies[:user_id]
-    @item_id = params[:id]
-    @items = UserItem.all
-    @count = 0
-    @items.each do |item|
-      if item.user_id == @user_id and item.item_id == @item_id
-        @count = item.count
-        break
-      end
+    @user_id = cookies[:user_id].to_i
+    @item_id = params[:id].to_i
+    if UserItem.exists?({:item_id => @item_id, :user_id => @user_id})
+      @count = UserItem.where({:item_id => @item_id, :user_id => @user_id})[0]["count"]
+      puts("count is #{@count}")
+      UserItem.where({:item_id => @item_id, :user_id => @user_id}).update_all({:count => @count+1})
+    else
+      UserItem.create({:item_id => @item_id, :user_id => @user_id, :count => 1})
     end
-    UserItem.create({:item_id => @item_id, :user_id => @user_id, :count => @count+1})
     redirect_to("/prostor/index")
   end
 end
